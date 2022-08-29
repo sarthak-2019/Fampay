@@ -85,37 +85,38 @@ const Feed = () => {
   return (
     <div className="flex justify-center gap-8 my-10 flex-wrap w-5/6">
       {open && <Price open={open} setOpen={setOpen} url={url} />}
-      {state.searchData.map((item) => {
-        return (
-          <MainContainer className="cardHover cardHoverTransition">
-            <img
-              src={item.thumbnails.high.url}
-              className="mainImage"
-              alt="no image"
-            />
-            <div className="heading">{item?.channelTitle}</div>
-            <div className="heading1">{item?.title}</div>
-            <div className="heading">Description</div>
-            <div className="heading2">{item?.description}</div>
-            <div className="divwatch">
-              <div style={{ display: "flex", gap: "8px" }}>
-                <Clock />
-                <div>{moment(item?.publishTime).fromNow()}</div>
-              </div>
+      {state.searchData.length > 0 &&
+        state.searchData.map((item) => {
+          return (
+            <MainContainer className="cardHover cardHoverTransition">
+              <img
+                src={item.thumbnails.high.url}
+                className="mainImage"
+                alt="no image"
+              />
+              <div className="heading">{item?.channelTitle}</div>
+              <div className="heading1">{item?.title}</div>
+              <div className="heading">Description</div>
+              <div className="heading2">{item?.description}</div>
+              <div className="divwatch">
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <Clock />
+                  <div>{moment(item?.publishTime).fromNow()}</div>
+                </div>
 
-              <div
-                className="watch"
-                onClick={() => {
-                  setOpen(true);
-                  setUrl(`https://www.youtube.com/embed/${item.videoId}`);
-                }}
-              >
-                Watch now
+                <div
+                  className="watch"
+                  onClick={() => {
+                    setOpen(true);
+                    setUrl(`https://www.youtube.com/embed/${item.videoId}`);
+                  }}
+                >
+                  Watch now
+                </div>
               </div>
-            </div>
-          </MainContainer>
-        );
-      })}
+            </MainContainer>
+          );
+        })}
     </div>
   );
 };

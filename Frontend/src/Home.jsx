@@ -79,16 +79,26 @@ const Home = () => {
         <div className="mt-12">
           <Navbar selected={selected} setselected={setselected} />
         </div>
-        <div
-          className="text-2xl text-center text-color font-bold w-full"
-          style={{ marginTop: "48px" }}
-        >
-          {searchWord.length === 0
-            ? tag === "all"
-              ? "Showing all Results"
-              : `Showing Results for ${tag}`
-            : `Showing results for keyword ${searchWord}`}
-        </div>
+        {state.searchData.length > 0 ? (
+          <div
+            className="text-2xl text-center text-color font-bold w-full"
+            style={{ marginTop: "48px" }}
+          >
+            {searchWord.length === 0
+              ? tag === "all"
+                ? "Showing all Results"
+                : `Showing Results for ${tag}`
+              : `Showing results for keyword ${searchWord}`}
+          </div>
+        ) : (
+          <div
+            className="text-2xl text-center text-color font-bold w-full"
+            style={{ marginTop: "48px" }}
+          >
+            No Results found
+          </div>
+        )}
+
         {state.loading ? (
           <MainContainer>
             <CircularProgress style={{ color: "#546fff" }} size={60} />
