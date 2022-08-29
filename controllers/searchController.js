@@ -5,16 +5,24 @@ exports.getAllVideos = handleApi.getAll(VideoDataModel);
 
 exports.getVideos = async (req, res) => {
   const queryObj = { ...req.query };
+  const sort = queryObj.sort || -1;
   const page = queryObj.page * 1 || 1;
-  const limit = queryObj.limit * 1 || 100;
+  const limit = queryObj.limit * 1 || 5;
+  const keyWord = queryObj.word;
   const skip = (page - 1) * limit;
+  if (!keyWord) {
+    return res.status(400).json({
+      status: "failure",
+      message: "Please send keyword in the query",
+    });
+  }
   try {
     const result = await VideoDataModel.aggregate([
       {
         $search: {
           index: "autocomplete",
           autocomplete: {
-            query: queryObj.word,
+            query: keyWord,
             path: "title",
             fuzzy: {
               maxEdits: 1,
@@ -36,7 +44,7 @@ exports.getVideos = async (req, res) => {
           score: { $meta: "searchScore" },
         },
       },
-      { $sort: { publishTime: queryObj.sort * 1 } },
+      { $sort: { publishTime: sort * 1 } },
       {
         $skip: skip,
       },
