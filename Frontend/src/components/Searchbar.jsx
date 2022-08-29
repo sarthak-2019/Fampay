@@ -29,15 +29,16 @@ const SearchBar = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <MainContainer className="relative w-124 h-12 input-main">
+    <MainContainer className="relative w-184 h-12">
       <input
         type="text"
-        className="w-full h-full px-7 py-4 outline-none"
+        className="w-full h-full px-7 py-4 outline-none input-main"
         placeholder="Search for Videos"
         onChange={(e) => {
           setSearch(e.target.value);
         }}
         value={search}
+        disabled={keyword.length > 0}
       />
       {keyword.length > 0 ? (
         <div
@@ -60,6 +61,7 @@ const SearchBar = () => {
             } else {
               dispatch(SetPage(1));
               dispatch(SetWord(search));
+              dispatch(Tag("all"));
             }
           }}
         >

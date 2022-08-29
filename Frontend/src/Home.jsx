@@ -83,24 +83,29 @@ const Home = () => {
           className="text-2xl text-center text-color font-bold w-full"
           style={{ marginTop: "48px" }}
         >
-          "Let’s build better products."
+          {searchWord.length === 0
+            ? tag === "all"
+              ? "Showing all Results"
+              : `Showing Results for ${tag}`
+            : `Showing results for keyword ${searchWord}`}
         </div>
-        {}
-
         {state.loading ? (
           <MainContainer>
             <CircularProgress style={{ color: "#546fff" }} size={60} />
           </MainContainer>
         ) : (
           <>
-            <div style={{ marginBottom: "32px", marginTop: "32px" }}>
-              <Pagination
-                count={count}
-                page={page}
-                onChange={handleChange}
-                color="primary"
-              />
-            </div>
+            {state.searchData.length > 0 && (
+              <div style={{ marginBottom: "32px", marginTop: "32px" }}>
+                <Pagination
+                  count={count}
+                  page={page}
+                  onChange={handleChange}
+                  color="primary"
+                />
+              </div>
+            )}
+
             <Feed />
           </>
         )}

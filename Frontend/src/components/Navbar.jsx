@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Tag, SortType, SetPage } from "./../store/searchReducer";
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
@@ -29,6 +29,7 @@ const nav_arr = [
 const Navbar = ({ selected, setselected }) => {
   const dispatch = useDispatch();
   const [state, setState] = React.useState(true);
+  const keyword = useSelector((state) => state.search.searchWord);
 
   const handleChange = (event) => {
     if (event.target.checked) {
@@ -49,7 +50,9 @@ const Navbar = ({ selected, setselected }) => {
           <div
             className={`${
               item.value == selected ? "bg-purple" : ""
-            } navbar-item px-5 py-3 rounded-lg cursor-pointer`}
+            } navbar-item px-5 py-3 rounded-lg cursor-pointer ${
+              keyword.length > 0 ? "is-disabled" : ""
+            }`}
             onClick={() => {
               dispatch(Tag(item.value));
               dispatch(SetPage(1));
