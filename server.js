@@ -28,7 +28,7 @@ const server = app.listen(port, () => {
   console.log(`App running on Port ${port}...`);
 });
 
-// VideoCronJob();
+VideoCronJob();
 
 // Catching unhandled Rejections [by async functions]
 process.on("unhandledRejection", (err) => {

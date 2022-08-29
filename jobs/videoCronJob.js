@@ -30,7 +30,7 @@ const addVideoToDb = async (data) => {
 
 module.exports = () => {
   var tokens = process.env.API_KEY.split(",");
-  cron.schedule("* * * * * *", function () {
+  cron.schedule("*/10 * * * * *", function () {
     const TAG_INDEX_NUMBER = tag_index % 10;
     axios
       .get(
