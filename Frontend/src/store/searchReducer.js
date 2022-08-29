@@ -8,6 +8,7 @@ const initialState = {
   searchData: [],
   loading: false,
   total_length: 0,
+  searchWord: "",
 };
 
 const searchSlice = createSlice({
@@ -35,6 +36,9 @@ const searchSlice = createSlice({
     SetPage: (state, action) => {
       state.page = action.payload;
     },
+    SetWord: (state, action) => {
+      state.searchWord = action.payload;
+    },
   },
 });
 
@@ -46,6 +50,7 @@ export const {
   SortType,
   SetSearchData,
   SetPage,
+  SetWord,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

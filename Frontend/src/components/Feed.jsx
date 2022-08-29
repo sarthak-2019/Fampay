@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Clock from "./../assets/svgs/clock1";
 import { useSelector } from "react-redux";
-import Price from "./Price";
+import Price from "./VideoPopup";
 import moment from "moment";
 
 export const MainContainer = styled.div`

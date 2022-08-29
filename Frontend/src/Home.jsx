@@ -6,7 +6,7 @@ import SearchBar from "./components/Searchbar";
 import Pagination from "@mui/material/Pagination";
 import { CircularProgress } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchVideos } from "./Api/api";
+import { fetchVideos, fetchVideosForKeyword } from "./Api/api";
 import { useEffect } from "react";
 import {
   LoadingTrue,
@@ -27,6 +27,7 @@ const Home = () => {
   const tag = state.tag;
   const pageCur = state.page;
   const sort = state.sort;
+  const searchWord = state.searchWord;
 
   const dispatch = useDispatch();
 
@@ -49,12 +50,23 @@ const Home = () => {
       dispatch(SetSearchData(response.data.data));
       dispatch(LoadingFalse());
     }
-    fetchData();
-  }, [tag, pageCur, sort]);
+    async function fetchDataKeyword() {
+      dispatch(LoadingTrue());
+      const response = await fetchVideosForKeyword();
+      // console.log(response.data.data);
+      let number_of_pages = Math.ceil(response.total_length / state.limit);
+      setCount(number_of_pages);
+      dispatch(TotalLength(response.total_length));
+      dispatch(SetSearchData(response.data.data));
+      dispatch(LoadingFalse());
+    }
+    if (searchWord.length === 0) fetchData();
+    else fetchDataKeyword();
+  }, [tag, pageCur, sort, searchWord]);
 
   useEffect(() => {
     setPage(pageCur);
-  }, [tag, pageCur, sort]);
+  }, [tag, pageCur, sort, searchWord]);
   return (
     <>
       <div

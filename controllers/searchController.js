@@ -36,7 +36,7 @@ exports.getVideos = async (req, res) => {
           score: { $meta: "searchScore" },
         },
       },
-      { $sort: { publishTime: -1 } },
+      { $sort: { publishTime: queryObj.sort * 1 } },
       {
         $skip: skip,
       },

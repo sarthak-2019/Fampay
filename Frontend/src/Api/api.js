@@ -3,6 +3,7 @@ import { Loading } from "../store/searchReducer";
 import axios from "axios";
 
 const API = axios.create({ baseURL: "http://localhost:8000/api/" });
+
 export const fetchVideos = async () => {
   const state = store.getState();
   try {
@@ -10,6 +11,20 @@ export const fetchVideos = async () => {
       `/searchAll?page=${state.search.page}&limit=${state.search.limit}&tag=${
         state.search.tag
       }&sort=${state.search.sort === "desc" ? "-publishTime" : "publishTime"}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchVideosForKeyword = async () => {
+  const state = store.getState();
+  try {
+    const response = await API.get(
+      `/search?page=${state.search.page}&limit=${state.search.limit}&word=${
+        state.search.searchWord
+      }&sort=${state.search.sort === "desc" ? "-1" : "1"}`
     );
     return response.data;
   } catch (error) {
