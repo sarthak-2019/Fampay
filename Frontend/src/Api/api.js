@@ -24,7 +24,7 @@ export const fetchVideosForKeyword = async () => {
     const response = await API.get(
       `/search?page=${state.search.page}&limit=${state.search.limit}&word=${
         state.search.searchWord
-      }&sort=${state.search.sort === "desc" ? "-1" : "1"}`
+      }&sort=${state.search.sort === "desc" ? "-publishTime" : "publishTime"}`
     );
     return response.data;
   } catch (error) {

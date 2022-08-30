@@ -5,7 +5,10 @@ exports.getAllVideos = handleApi.getAll(VideoDataModel);
 
 exports.getVideos = async (req, res) => {
   const queryObj = { ...req.query };
-  const sort = queryObj.sort || -1;
+  let sort = -1;
+  if (queryObj.sort === "publishTime") {
+    sort = 1;
+  }
   const page = queryObj.page * 1 || 1;
   const limit = queryObj.limit * 1 || 5;
   const keyWord = queryObj.word;
