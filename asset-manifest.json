@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/sarthak-2019/Fampay/static/css/main.22bdc2bf.css",
+    "main.js": "/sarthak-2019/Fampay/static/js/main.02839e49.js",
+    "index.html": "/sarthak-2019/Fampay/index.html",
+    "main.22bdc2bf.css.map": "/sarthak-2019/Fampay/static/css/main.22bdc2bf.css.map",
+    "main.02839e49.js.map": "/sarthak-2019/Fampay/static/js/main.02839e49.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22bdc2bf.css",
+    "static/js/main.02839e49.js"
+  ]
+}
