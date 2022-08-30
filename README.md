@@ -1,7 +1,7 @@
 ## Backend Specs
 1-A cron job which runs every 10 seconds to fetch videos based on ten different tags  <br /> <br />
 2-Videos with unique ids are uploaded to the database  <br /> <br />
-3-Backend application support two different APIs  <br /> <br />
+3-Backend application support two different APIs-  <br />
    *Search videos based on Tags  <br />
    *Search video based on a subsequence of the video title [partial match search]  <br />
    *Both the APIs support pagination, limit and sorting based on Published 
