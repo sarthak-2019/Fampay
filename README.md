@@ -22,7 +22,8 @@
 1-User can search videos based on 10 Different Tags  <br />
 2-Sort Videos based on time, support pagination with five videos at a time  <br />
 3-Search Bar to search videos based on video titles  <br />
- # Deployed Site-https://fampay1.netlify.app/  <br />
+<b>Deployed Site</b>
+https://fampay1.netlify.app/<br />
 
 ## Tech Stack [Language Used-Javascript]
 1-React  <br />
