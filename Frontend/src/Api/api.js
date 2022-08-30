@@ -2,7 +2,8 @@ import { store } from "./../store/store";
 import { Loading } from "../store/searchReducer";
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:8000/api/" });
+// localHost:http://localhost:8000/api/
+const API = axios.create({ baseURL: "https://fampay1.herokuapp.com/api/" });
 
 export const fetchVideos = async () => {
   const state = store.getState();
